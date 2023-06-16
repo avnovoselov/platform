@@ -164,7 +164,7 @@ class Order extends AbstractEntity
                 if ($this->checkStrLenMax($phone, 25) && $this->checkPhoneByValue($phone)) {
                     $this->phone = $phone;
                 }
-            } catch (\RuntimeException $e) {
+            } catch (\RuntimeException) {
                 throw new \App\Domain\Service\Catalog\Exception\WrongPhoneValueException();
             }
         } else {
@@ -194,7 +194,7 @@ class Order extends AbstractEntity
                 if ($this->checkStrLenMax($email, 120) && $this->checkEmailByValue($email)) {
                     $this->email = $email;
                 }
-            } catch (\RuntimeException $e) {
+            } catch (\RuntimeException) {
                 throw new \App\Domain\Service\Catalog\Exception\WrongEmailValueException();
             }
         } else {

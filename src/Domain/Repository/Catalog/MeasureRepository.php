@@ -24,7 +24,7 @@ class MeasureRepository extends AbstractRepository
 
         try {
             $result = $query->getOneOrNullResult();
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException) {
             $results = $query->getResult();
             $result = array_shift($results);
         }

@@ -19,9 +19,9 @@ class PageAction extends AbstractAction
             return $this->respond($page->getTemplate(), [
                 'page' => $page,
             ]);
-        } catch (HttpBadRequestException $e) {
+        } catch (HttpBadRequestException) {
             return $this->respond('p400.twig')->withStatus(400);
-        } catch (PageNotFoundException $e) {
+        } catch (PageNotFoundException) {
             return $this->respond('p404.twig')->withStatus(404);
         }
     }

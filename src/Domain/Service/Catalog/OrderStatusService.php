@@ -89,7 +89,7 @@ class OrderStatusService extends AbstractService
                 default:
                     return collect($this->service->findBy($criteria, $data['order'], $data['limit'], $data['offset']));
             }
-        } catch (\Doctrine\DBAL\Exception\TableNotFoundException $e) {
+        } catch (\Doctrine\DBAL\Exception\TableNotFoundException) {
             return null;
         }
     }

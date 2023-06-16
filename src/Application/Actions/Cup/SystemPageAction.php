@@ -97,7 +97,7 @@ class SystemPageAction extends AbstractAction
                     'title' => __('Administrators'),
                     'access' => $this->getRoutes()->values()->all(),
                 ]);
-            } catch (TitleAlreadyExistsException $e) {
+            } catch (TitleAlreadyExistsException) {
                 $userData['group'] = $userGroupService->read([
                     'title' => __('Administrators'),
                 ]);

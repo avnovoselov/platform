@@ -60,7 +60,7 @@ class User extends AbstractEntity
                 if ($this->checkStrLenMax($email, 120) && $this->checkEmailByValue($email)) {
                     $this->email = $email;
                 }
-            } catch (\RuntimeException $e) {
+            } catch (\RuntimeException) {
                 throw new \App\Domain\Service\User\Exception\WrongEmailValueException();
             }
         } else {
@@ -102,7 +102,7 @@ class User extends AbstractEntity
                 if ($this->checkStrLenMax($phone, 25) && $this->checkPhoneByValue($phone)) {
                     $this->phone = $phone;
                 }
-            } catch (\RuntimeException $e) {
+            } catch (\RuntimeException) {
                 throw new \App\Domain\Service\User\Exception\WrongPhoneValueException();
             }
         } else {

@@ -66,11 +66,11 @@ class ListAction extends AbstractAction
                             'category' => $category,
                             'publication' => $publication,
                         ]);
-                    } catch (PublicationNotFoundException $e) {
+                    } catch (PublicationNotFoundException) {
                         return $this->respond('p404.twig')->withStatus(404);
                     }
             }
-        } catch (HttpBadRequestException $e) {
+        } catch (HttpBadRequestException) {
             return $this->respond('p400.twig')->withStatus(400);
         }
     }

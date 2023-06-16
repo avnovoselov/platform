@@ -42,7 +42,7 @@ class ImportTask extends AbstractTask
 
         try {
             $file = $fileService->read(['uuid' => $args['file']]);
-        } catch (FileNotFoundException $e) {
+        } catch (FileNotFoundException) {
             return $this->setStatusFail();
         }
 
@@ -84,7 +84,7 @@ class ImportTask extends AbstractTask
                                         'status' => \App\Domain\Types\Catalog\CategoryStatusType::STATUS_WORK,
                                     ])
                                     ->first();
-                            } catch (CategoryNotFoundException $e) {
+                            } catch (CategoryNotFoundException) {
                                 $this->logger->info('Create category', ['title' => $item]);
 
                                 try {
@@ -95,9 +95,9 @@ class ImportTask extends AbstractTask
                                         'template' => $template,
                                         'export' => 'excel',
                                     ]);
-                                } catch (MissingTitleValueException $e) {
+                                } catch (MissingTitleValueException) {
                                     $this->logger->warning('Category wrong title value');
-                                } catch (AddressAlreadyExistsException $e) {
+                                } catch (AddressAlreadyExistsException) {
                                     $this->logger->warning('Category wrong address value');
                                 }
                             }
@@ -128,7 +128,7 @@ class ImportTask extends AbstractTask
                             } else {
                                 throw new ProductNotFoundException();
                             }
-                        } catch (ProductNotFoundException $e) {
+                        } catch (ProductNotFoundException) {
                             if ($action === 'insert') {
                                 $this->logger->info('Create product', $data->toArray());
 
@@ -161,9 +161,9 @@ class ImportTask extends AbstractTask
                                             )
                                         );
                                     }
-                                } catch (MissingTitleValueException $e) {
+                                } catch (MissingTitleValueException) {
                                     $this->logger->warning('Product wrong title value');
-                                } catch (AddressAlreadyExistsException $e) {
+                                } catch (AddressAlreadyExistsException) {
                                     $this->logger->warning('Product wrong address value');
                                 }
                             }

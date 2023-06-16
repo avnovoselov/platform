@@ -106,7 +106,7 @@ class Token extends AbstractEntity
             if ($this->checkStrLenMax($ip, 16) && $this->getIpByValue($ip)) {
                 $this->ip = $ip;
             }
-        } catch (\RuntimeException $e) {
+        } catch (\RuntimeException) {
             throw new \App\Domain\Service\User\Exception\WrongIpValueException();
         }
 

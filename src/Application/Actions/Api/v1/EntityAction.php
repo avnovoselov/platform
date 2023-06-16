@@ -40,7 +40,7 @@ class EntityAction extends ActionApi
                 case 'GET':
                     try {
                         $result = $service->read($params);
-                    } catch (AbstractNotFoundException|Exception $e) {
+                    } catch (AbstractNotFoundException|Exception) {
                         $status = 404;
                     }
 
@@ -84,7 +84,7 @@ class EntityAction extends ActionApi
                             } else {
                                 $status = 409;
                             }
-                        } catch (AbstractNotFoundException|Exception $e) {
+                        } catch (AbstractNotFoundException|Exception) {
                             $status = 404;
                         }
                     } else {
@@ -114,7 +114,7 @@ class EntityAction extends ActionApi
                             } else {
                                 $status = 409;
                             }
-                        } catch (AbstractNotFoundException|Exception $e) {
+                        } catch (AbstractNotFoundException|Exception) {
                             $status = 404;
                         }
                     } else {
@@ -207,7 +207,7 @@ class EntityAction extends ActionApi
 
                     $params['user'] = $user;
                     $params['user_uuid'] = $user->getUuid();
-                } catch (UserNotFoundException $e) {
+                } catch (UserNotFoundException) {
                     // nothing
                 }
             }
