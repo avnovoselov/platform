@@ -6,16 +6,16 @@ use App\Domain\AbstractEnumType;
 
 class TaskStatusType extends AbstractEnumType
 {
-    public const NAME = 'TaskStatusType';
+    final public const NAME = 'TaskStatusType';
 
-    public const STATUS_QUEUE = 'queue';
-    public const STATUS_WORK = 'work';
-    public const STATUS_DONE = 'done';
-    public const STATUS_FAIL = 'fail';
-    public const STATUS_CANCEL = 'cancel';
-    public const STATUS_DELETE = 'delete';
+    final public const STATUS_QUEUE = 'queue';
+    final public const STATUS_WORK = 'work';
+    final public const STATUS_DONE = 'done';
+    final public const STATUS_FAIL = 'fail';
+    final public const STATUS_CANCEL = 'cancel';
+    final public const STATUS_DELETE = 'delete';
 
-    public const LIST = [
+    final public const LIST = [
         self::STATUS_QUEUE,
         self::STATUS_WORK,
         self::STATUS_DONE,

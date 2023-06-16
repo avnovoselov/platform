@@ -3,7 +3,10 @@
 namespace tests;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\ToolsException;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Slim\App;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
@@ -14,11 +17,9 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
     protected EntityManager $em;
 
-    /**
-     * @return App
-     */
     public static function setUpBeforeClass(): void
     {
+        $app = null;
         $_ENV['TEST'] = 1; // in test always true (!)
 
         require SRC_DIR . '/bootstrap.php';
@@ -32,6 +33,11 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         static::$container = static::$app->getContainer();
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws ToolsException
+     */
     public function setUp(): void
     {
         $this->em = $em = static::$container->get(EntityManager::class);
@@ -53,7 +59,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @return \Faker\Generator
      */
-    protected function getFaker()
+    protected function getFaker(): \Faker\Generator
     {
         static $faker;
 

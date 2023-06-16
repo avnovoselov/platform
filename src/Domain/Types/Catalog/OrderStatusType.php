@@ -6,16 +6,16 @@ use App\Domain\AbstractEnumType;
 
 class OrderStatusType extends AbstractEnumType
 {
-    public const NAME = 'CatalogOrderStatusType';
+    final public const NAME = 'CatalogOrderStatusType';
 
-    public const STATUS_NEW = 'new';
-    public const STATUS_PROCESS = 'process';
-    public const STATUS_PAYMENT = 'payment';
-    public const STATUS_READY = 'ready';
-    public const STATUS_COMPLETE = 'complete';
-    public const STATUS_CANCEL = 'cancel';
+    final public const STATUS_NEW = 'new';
+    final public const STATUS_PROCESS = 'process';
+    final public const STATUS_PAYMENT = 'payment';
+    final public const STATUS_READY = 'ready';
+    final public const STATUS_COMPLETE = 'complete';
+    final public const STATUS_CANCEL = 'cancel';
 
-    public const LIST = [
+    final public const LIST = [
         self::STATUS_NEW,
         self::STATUS_PROCESS,
         self::STATUS_PAYMENT,

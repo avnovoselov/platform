@@ -6,17 +6,17 @@ use App\Domain\AbstractEnumType;
 
 class FileItemType extends AbstractEnumType
 {
-    public const NAME = 'FileItemType';
+    final public const NAME = 'FileItemType';
 
-    public const ITEM_USER_UPLOAD = 'user_upload';
-    public const ITEM_PAGE = 'page';
-    public const ITEM_PUBLICATION = 'publication';
-    public const ITEM_CATALOG_CATEGORY = 'catalog_category';
-    public const ITEM_CATALOG_PRODUCT = 'catalog_product';
-    public const ITEM_FORM_DATA = 'form_data';
-    public const ITEM_THEME = 'theme';
+    final public const ITEM_USER_UPLOAD = 'user_upload';
+    final public const ITEM_PAGE = 'page';
+    final public const ITEM_PUBLICATION = 'publication';
+    final public const ITEM_CATALOG_CATEGORY = 'catalog_category';
+    final public const ITEM_CATALOG_PRODUCT = 'catalog_product';
+    final public const ITEM_FORM_DATA = 'form_data';
+    final public const ITEM_THEME = 'theme';
 
-    public const LIST = [
+    final public const LIST = [
         self::ITEM_USER_UPLOAD,
         self::ITEM_PAGE,
         self::ITEM_PUBLICATION,

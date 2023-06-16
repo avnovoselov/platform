@@ -17,7 +17,7 @@ use Illuminate\Support\Collection;
 
 class ImportTask extends AbstractTask
 {
-    public const TITLE = 'Import directory from Excel file';
+    final public const TITLE = 'Import directory from Excel file';
 
     public function execute(array $params = []): \App\Domain\Entities\Task
     {
@@ -49,7 +49,6 @@ class ImportTask extends AbstractTask
         $catalogCategoryService = $this->container->get(CatalogCategoryService::class);
         $catalogProductService = $this->container->get(CatalogProductService::class);
         $catalogAttributeService = $this->container->get(CatalogAttributeService::class);
-        $catalogProductAttributeService = $this->container->get(CatalogProductAttributeService::class);
 
         // parse excel file
         /** @var Collection $data */
@@ -157,8 +156,8 @@ class ImportTask extends AbstractTask
                                                         ->intersectByKeys($attributes->pluck('title', 'address'))
                                                         ->map(fn ($el) => $el['raw'])
                                                         ->all(),
-                                                ]
-                                            )
+                                                ],
+                                            ),
                                         );
                                     }
                                 } catch (MissingTitleValueException) {
@@ -185,16 +184,11 @@ class ImportTask extends AbstractTask
                                 if ($category) {
                                     $update['category'] = $category->getUuid();
                                 }
-                                $catalogProductService->update($product, array_merge(
-                                    $update,
-                                    [
-                                        'date' => $now,
-                                        'attributes' => $data
-                                            ->intersectByKeys($attributes->pluck('title', 'address'))
-                                            ->map(fn ($el) => $el['raw'])
-                                            ->all(),
-                                    ]
-                                ));
+                                $catalogProductService
+                                    ->update($product, [...$update, 'date' => $now, 'attributes' => $data
+                                        ->intersectByKeys($attributes->pluck('title', 'address'))
+                                        ->map(fn ($el) => $el['raw'])
+                                        ->all()]);
                             }
                         }
 
@@ -301,11 +295,8 @@ class ImportTask extends AbstractTask
 
     /**
      * Check cell is merged or not
-     *
-     * @param mixed $sheet
-     * @param mixed $cell
      */
-    protected function isMergedCell($sheet, $cell): bool
+    protected function isMergedCell(mixed $sheet, mixed $cell): bool
     {
         foreach ($sheet->getMergeCells() as $cells) {
             if ($cell->isInRange($cells)) {

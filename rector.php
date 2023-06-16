@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\Config\RectorConfig;
+use Rector\Php71\Rector\FuncCall\CountOnNullRector;
 use Rector\Php80\Rector\Catch_\RemoveUnusedVariableInCatchRector;
+use Rector\Php81\Rector\ClassConst\FinalizePublicClassConstantRector;
+use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
 use Rector\Set\ValueObject\LevelSetList;
 
 return static function (RectorConfig $rectorConfig): void {
@@ -16,13 +19,18 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/tests',
     ]);
 
-    $rectorConfig->rule(RemoveUnusedVariableInCatchRector::class);
+//    $rectorConfig->rule(RemoveUnusedVariableInCatchRector::class);
 
     // register a single rule
-    //    $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
+//    $rectorConfig->rule(FinalizePublicClassConstantRector::class);
+
+    $rectorConfig->skip([
+        NullToStrictStringFuncCallArgRector::class,
+        CountOnNullRector::class
+    ]);
 
     // define sets of rules
-//    $rectorConfig->sets([
-//        LevelSetList::UP_TO_PHP_82,
-//    ]);
+    $rectorConfig->sets([
+        LevelSetList::UP_TO_PHP_82,
+    ]);
 };

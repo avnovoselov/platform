@@ -9,7 +9,7 @@ use App\Domain\Service\File\FileService;
 
 class ConvertImageTask extends AbstractTask
 {
-    public const TITLE = 'Image processing';
+    final public const TITLE = 'Image processing';
 
     public function execute(array $params = []): \App\Domain\Entities\Task
     {

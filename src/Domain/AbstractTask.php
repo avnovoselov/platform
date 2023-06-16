@@ -14,7 +14,7 @@ abstract class AbstractTask
     use ParameterTrait;
     use RendererTrait;
 
-    public const TITLE = '';
+    final public const TITLE = '';
 
     protected ContainerInterface $container;
 
