@@ -46,7 +46,7 @@ class Search
                     }
                 }
 
-                $index = array_merge($index, $text);
+                $index = [...$index, ...$text];
             }
         }
 

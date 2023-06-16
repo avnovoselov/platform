@@ -17,14 +17,8 @@ return function (ContainerBuilder $containerBuilder): void {
             return \Slim\Factory\AppFactory::create();
         },
 
-        \Slim\Interfaces\RouteCollectorInterface::class => function (ContainerInterface $container) {
-            return $container->get(\Slim\App::class)->getRouteCollector();
-        },
-
-        // pubsub component
-        \App\Application\PubSub::class => function (ContainerInterface $container) {
-            return new \App\Application\PubSub($container);
-        },
+        \Slim\Interfaces\RouteCollectorInterface::class => fn(ContainerInterface $container) => $container->get(\Slim\App::class)->getRouteCollector(),
+        \App\Application\PubSub::class => fn(ContainerInterface $container) => new \App\Application\PubSub($container),
     ]);
 
     // doctrine
@@ -106,7 +100,7 @@ return function (ContainerBuilder $containerBuilder): void {
             $settings = array_merge(
                 ['template_path' => VIEW_DIR],
                 $c->get('twig'),
-                ['displayErrorDetails' => $c->get('settings')['displayErrorDetails']]
+                ['displayErrorDetails' => $c->get('settings')['displayErrorDetails']],
             );
 
             $view = \Slim\Views\Twig::create($settings['template_path'], [
