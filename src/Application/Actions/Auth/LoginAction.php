@@ -36,7 +36,7 @@ class LoginAction extends AuthAction
                     'access_token' => $tokens['access_token'],
                     'refresh_token' => $tokens['refresh_token'],
                 ]);
-        } catch (UserNotFoundException|WrongPasswordException $exception) {
+        } catch (UserNotFoundException|WrongPasswordException) {
             return $this->response->withStatus(404);
         }
     }

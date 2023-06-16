@@ -40,13 +40,13 @@ class AuthorizationMiddleware extends AbstractMiddleware
                         ]);
 
                         $request = $request->withAttribute('user', $user);
-                    } catch (UserNotFoundException $e) {
+                    } catch (UserNotFoundException) {
                         return (new Response())
                             ->withHeader('Location', '/auth/logout?redirect=' . $request->getUri()->getPath())
                             ->withStatus(307);
                     }
                 }
-            } catch (SignatureInvalidException|ExpiredException $e) {
+            } catch (SignatureInvalidException|ExpiredException) {
                 return (new Response())
                     ->withHeader('Location', '/auth/refresh-token?redirect=' . $request->getUri()->getPath())
                     ->withStatus(308);

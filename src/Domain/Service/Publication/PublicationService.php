@@ -143,7 +143,7 @@ class PublicationService extends AbstractService
                 default:
                     return collect($this->service->findBy($criteria, $data['order'], $data['limit'], $data['offset']));
             }
-        } catch (\Doctrine\DBAL\Exception\TableNotFoundException $e) {
+        } catch (\Doctrine\DBAL\Exception\TableNotFoundException) {
             return null;
         }
     }
@@ -250,9 +250,9 @@ class PublicationService extends AbstractService
                 foreach ($files as $file) {
                     try {
                         $fileService->delete($file);
-                    } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                    } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException) {
                         // nothing, file not found
-                    } catch (\App\Domain\Service\File\Exception\FileNotFoundException $e) {
+                    } catch (\App\Domain\Service\File\Exception\FileNotFoundException) {
                         // nothing, file not found
                     }
                 }

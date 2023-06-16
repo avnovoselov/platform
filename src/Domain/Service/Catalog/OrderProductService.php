@@ -53,7 +53,7 @@ class OrderProductService extends AbstractService
                             'count' => $count,
                         ])
                     );
-                } catch (Exception\ProductNotFoundException $e) {
+                } catch (Exception\ProductNotFoundException) {
                     // skip
                 }
             }

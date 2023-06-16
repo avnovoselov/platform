@@ -21,7 +21,7 @@ class CartDoneAction extends CatalogAction
                         'order' => $order,
                     ]);
                 }
-            } catch (OrderNotFoundException $e) {
+            } catch (OrderNotFoundException) {
                 return $this->respond('p404.twig')->withStatus(404);
             }
         }

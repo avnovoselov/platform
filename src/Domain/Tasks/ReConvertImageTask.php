@@ -8,7 +8,7 @@ use App\Domain\Service\File\FileService;
 
 class ReConvertImageTask extends AbstractTask
 {
-    public const TITLE = 'Re process images';
+    final public const TITLE = 'Re process images';
 
     public function execute(array $params = []): \App\Domain\Entities\Task
     {

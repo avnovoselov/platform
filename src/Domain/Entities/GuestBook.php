@@ -54,7 +54,7 @@ class GuestBook extends AbstractEntity
             if ($this->checkStrLenMax($email, 120) && $this->checkEmailByValue($email)) {
                 $this->email = $email;
             }
-        } catch (\RuntimeException $e) {
+        } catch (\RuntimeException) {
             throw new \App\Domain\Service\GuestBook\Exception\WrongEmailValueException();
         }
 

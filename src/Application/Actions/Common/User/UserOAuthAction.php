@@ -22,7 +22,7 @@ class UserOAuthAction extends UserAction
                     'unique' => $accessToken->getUserId(),
                 ]);
                 $user = $integration->getUser();
-            } catch (IntegrationNotFoundException $e) {
+            } catch (IntegrationNotFoundException) {
                 $user = $this->request->getAttribute('user');
 
                 if ($user === null) {

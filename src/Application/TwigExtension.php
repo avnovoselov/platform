@@ -223,7 +223,7 @@ class TwigExtension extends AbstractExtension
                 default:
                     return $reference[$value];
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return $value;
         }
     }

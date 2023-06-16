@@ -73,13 +73,13 @@ class FileService extends AbstractService
                         'hash' => $info['hash'],
                         'salt' => $salt,
                     ]);
-                } catch (FileAlreadyExistsException $exception) {
+                } catch (FileAlreadyExistsException) {
                     // remove uploaded temp file
                     @exec('rm -rf ' . dirname($dir));
 
                     try {
                         return $this->read(['hash' => $info['hash']]);
-                    } catch (FileNotFoundException $e) {
+                    } catch (FileNotFoundException) {
                         return null;
                     }
                 }
@@ -221,7 +221,7 @@ class FileService extends AbstractService
                 default:
                     return collect($this->service->findBy($criteria, $data['order'], $data['limit'], $data['offset']));
             }
-        } catch (\Doctrine\DBAL\Exception\TableNotFoundException $e) {
+        } catch (\Doctrine\DBAL\Exception\TableNotFoundException) {
             return null;
         }
     }

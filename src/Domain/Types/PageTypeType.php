@@ -6,12 +6,12 @@ use App\Domain\AbstractEnumType;
 
 class PageTypeType extends AbstractEnumType
 {
-    public const NAME = 'PageTypeType';
+    final public const NAME = 'PageTypeType';
 
-    public const TYPE_HTML = 'html';
-    public const TYPE_TEXT = 'text';
+    final public const TYPE_HTML = 'html';
+    final public const TYPE_TEXT = 'text';
 
-    public const LIST = [
+    final public const LIST = [
         self::TYPE_HTML,
         self::TYPE_TEXT,
     ];

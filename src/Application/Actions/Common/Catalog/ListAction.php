@@ -38,7 +38,7 @@ class ListAction extends CatalogAction
             if ($buf = $this->prepareProduct($params, $categories)) {
                 return $buf;
             }
-        } catch (CategoryNotFoundException|ProductNotFoundException $e) {
+        } catch (CategoryNotFoundException|ProductNotFoundException) {
             // nothing
         }
 

@@ -149,7 +149,7 @@ class FormAction extends AbstractAction
             }
 
             $this->addError('grecaptcha', 'EXCEPTION_WRONG_GRECAPTCHA');
-        } catch (FormNotFoundException $e) {
+        } catch (FormNotFoundException) {
             // 404
             return $this->respond('p404.twig')->withStatus(404);
         }

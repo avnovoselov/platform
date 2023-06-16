@@ -6,12 +6,12 @@ use App\Domain\AbstractEnumType;
 
 class ProductTypeType extends AbstractEnumType
 {
-    public const NAME = 'CatalogProductTypeType';
+    final public const NAME = 'CatalogProductTypeType';
 
-    public const TYPE_PRODUCT = 'product';
-    public const TYPE_SERVICE = 'service';
+    final public const TYPE_PRODUCT = 'product';
+    final public const TYPE_SERVICE = 'service';
 
-    public const LIST = [
+    final public const LIST = [
         self::TYPE_PRODUCT,
         self::TYPE_SERVICE,
     ];

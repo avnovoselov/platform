@@ -17,7 +17,7 @@ use Illuminate\Support\Collection;
 
 class ImportTask extends AbstractTask
 {
-    public const TITLE = 'Import directory from Excel file';
+    final public const TITLE = 'Import directory from Excel file';
 
     public function execute(array $params = []): \App\Domain\Entities\Task
     {
@@ -42,14 +42,13 @@ class ImportTask extends AbstractTask
 
         try {
             $file = $fileService->read(['uuid' => $args['file']]);
-        } catch (FileNotFoundException $e) {
+        } catch (FileNotFoundException) {
             return $this->setStatusFail();
         }
 
         $catalogCategoryService = $this->container->get(CatalogCategoryService::class);
         $catalogProductService = $this->container->get(CatalogProductService::class);
         $catalogAttributeService = $this->container->get(CatalogAttributeService::class);
-        $catalogProductAttributeService = $this->container->get(CatalogProductAttributeService::class);
 
         // parse excel file
         /** @var Collection $data */
@@ -84,7 +83,7 @@ class ImportTask extends AbstractTask
                                         'status' => \App\Domain\Types\Catalog\CategoryStatusType::STATUS_WORK,
                                     ])
                                     ->first();
-                            } catch (CategoryNotFoundException $e) {
+                            } catch (CategoryNotFoundException) {
                                 $this->logger->info('Create category', ['title' => $item]);
 
                                 try {
@@ -95,9 +94,9 @@ class ImportTask extends AbstractTask
                                         'template' => $template,
                                         'export' => 'excel',
                                     ]);
-                                } catch (MissingTitleValueException $e) {
+                                } catch (MissingTitleValueException) {
                                     $this->logger->warning('Category wrong title value');
-                                } catch (AddressAlreadyExistsException $e) {
+                                } catch (AddressAlreadyExistsException) {
                                     $this->logger->warning('Category wrong address value');
                                 }
                             }
@@ -128,7 +127,7 @@ class ImportTask extends AbstractTask
                             } else {
                                 throw new ProductNotFoundException();
                             }
-                        } catch (ProductNotFoundException $e) {
+                        } catch (ProductNotFoundException) {
                             if ($action === 'insert') {
                                 $this->logger->info('Create product', $data->toArray());
 
@@ -157,13 +156,13 @@ class ImportTask extends AbstractTask
                                                         ->intersectByKeys($attributes->pluck('title', 'address'))
                                                         ->map(fn ($el) => $el['raw'])
                                                         ->all(),
-                                                ]
-                                            )
+                                                ],
+                                            ),
                                         );
                                     }
-                                } catch (MissingTitleValueException $e) {
+                                } catch (MissingTitleValueException) {
                                     $this->logger->warning('Product wrong title value');
-                                } catch (AddressAlreadyExistsException $e) {
+                                } catch (AddressAlreadyExistsException) {
                                     $this->logger->warning('Product wrong address value');
                                 }
                             }
@@ -185,16 +184,11 @@ class ImportTask extends AbstractTask
                                 if ($category) {
                                     $update['category'] = $category->getUuid();
                                 }
-                                $catalogProductService->update($product, array_merge(
-                                    $update,
-                                    [
-                                        'date' => $now,
-                                        'attributes' => $data
-                                            ->intersectByKeys($attributes->pluck('title', 'address'))
-                                            ->map(fn ($el) => $el['raw'])
-                                            ->all(),
-                                    ]
-                                ));
+                                $catalogProductService
+                                    ->update($product, [...$update, 'date' => $now, 'attributes' => $data
+                                        ->intersectByKeys($attributes->pluck('title', 'address'))
+                                        ->map(fn ($el) => $el['raw'])
+                                        ->all()]);
                             }
                         }
 
@@ -301,11 +295,8 @@ class ImportTask extends AbstractTask
 
     /**
      * Check cell is merged or not
-     *
-     * @param mixed $sheet
-     * @param mixed $cell
      */
-    protected function isMergedCell($sheet, $cell): bool
+    protected function isMergedCell(mixed $sheet, mixed $cell): bool
     {
         foreach ($sheet->getMergeCells() as $cells) {
             if ($cell->isInRange($cells)) {

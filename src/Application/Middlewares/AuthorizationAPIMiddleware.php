@@ -97,11 +97,11 @@ class AuthorizationAPIMiddleware extends AbstractMiddleware
                             'uuid' => $uuid,
                             'status' => \App\Domain\Types\UserStatusType::STATUS_WORK,
                         ]);
-                    } catch (UserNotFoundException $e) {
+                    } catch (UserNotFoundException) {
                         // nothing
                     }
                 }
-            } catch (SignatureInvalidException|ExpiredException $e) {
+            } catch (SignatureInvalidException|ExpiredException) {
                 // nothing
             }
         }

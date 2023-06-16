@@ -6,12 +6,12 @@ use App\Domain\AbstractEnumType;
 
 class GuestBookStatusType extends AbstractEnumType
 {
-    public const NAME = 'GuestBookStatusType';
+    final public const NAME = 'GuestBookStatusType';
 
-    public const STATUS_WORK = 'work';
-    public const STATUS_MODERATE = 'moderate';
+    final public const STATUS_WORK = 'work';
+    final public const STATUS_MODERATE = 'moderate';
 
-    public const LIST = [
+    final public const LIST = [
         self::STATUS_WORK,
         self::STATUS_MODERATE,
     ];

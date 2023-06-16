@@ -23,7 +23,7 @@ class DataRepository extends AbstractRepository
 
         try {
             $result = $query->getResult();
-        } catch (NonUniqueResultException $e) {
+        } catch (NonUniqueResultException) {
             $results = $query->getResult();
             $result = array_shift($results);
         }

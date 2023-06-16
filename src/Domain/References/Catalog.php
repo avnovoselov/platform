@@ -4,7 +4,7 @@ namespace App\Domain\References;
 
 class Catalog
 {
-    public const IMPORT_EXPORT_FIELDS_DEFAULT = [
+    final public const IMPORT_EXPORT_FIELDS_DEFAULT = [
         'uuid',
         'title',
         'vendorcode',
@@ -13,7 +13,7 @@ class Catalog
         'order',
     ];
 
-    public const IMPORT_FIELDS = [
+    final public const IMPORT_FIELDS = [
         'uuid', 'external_id',
         'title', 'description', 'extra',
         'address', 'type',
@@ -25,7 +25,7 @@ class Catalog
         'order',
     ];
 
-    public const EXPORT_FIELDS = [
+    final public const EXPORT_FIELDS = [
         'uuid', 'external_id',
         'title', 'description', 'extra',
         'address', 'type',
@@ -38,14 +38,14 @@ class Catalog
     ];
 
     // possible order by
-    public const ORDER_BY_TITLE = 'title';
-    public const ORDER_BY_PRICE = 'price';
-    public const ORDER_BY_STOCK = 'stock';
-    public const ORDER_BY_DATE = 'date';
-    public const ORDER_BY_ORDER = 'order';
+    final public const ORDER_BY_TITLE = 'title';
+    final public const ORDER_BY_PRICE = 'price';
+    final public const ORDER_BY_STOCK = 'stock';
+    final public const ORDER_BY_DATE = 'date';
+    final public const ORDER_BY_ORDER = 'order';
 
     // list of order by
-    public const ORDER_BY = [
+    final public const ORDER_BY = [
         self::ORDER_BY_TITLE,
         self::ORDER_BY_PRICE,
         self::ORDER_BY_STOCK,
@@ -54,11 +54,11 @@ class Catalog
     ];
 
     // possible order directions
-    public const ORDER_DIRECTION_DESC = 'DESC';
-    public const ORDER_DIRECTION_ASC = 'ASC';
+    final public const ORDER_DIRECTION_DESC = 'DESC';
+    final public const ORDER_DIRECTION_ASC = 'ASC';
 
     // list of order directions
-    public const ORDER_DIRECTION = [
+    final public const ORDER_DIRECTION = [
         self::ORDER_DIRECTION_ASC,
         self::ORDER_DIRECTION_DESC,
     ];

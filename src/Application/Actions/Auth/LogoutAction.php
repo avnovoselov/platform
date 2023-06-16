@@ -25,7 +25,7 @@ class LogoutAction extends AuthAction
                 $this->userTokenService->delete($token);
 
                 $this->container->get(\App\Application\PubSub::class)->publish('auth:user:logout', $user);
-            } catch (TokenNotFoundException $e) {
+            } catch (TokenNotFoundException) {
                 // nothing
             } finally {
                 setcookie('access_token', '', time(), '/');

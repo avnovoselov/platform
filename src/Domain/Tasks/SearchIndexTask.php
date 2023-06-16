@@ -11,7 +11,7 @@ use Ramsey\Uuid\UuidInterface;
 
 class SearchIndexTask extends AbstractTask
 {
-    public const TITLE = 'Search indexing';
+    final public const TITLE = 'Search indexing';
 
     public function execute(array $params = []): \App\Domain\Entities\Task
     {

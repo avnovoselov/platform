@@ -21,13 +21,13 @@ abstract class AbstractPlugin
     use RendererTrait;
     use StorageTrait;
 
-    public const NAME = 'UntitledPlugin';
-    public const TITLE = 'Untitled plugin';
-    public const DESCRIPTION = '';
-    public const AUTHOR = 'Undefined author';
-    public const AUTHOR_EMAIL = '';
-    public const AUTHOR_SITE = '';
-    public const VERSION = '1.0';
+    final public const NAME = 'UntitledPlugin';
+    final public const TITLE = 'Untitled plugin';
+    final public const DESCRIPTION = '';
+    final public const AUTHOR = 'Undefined author';
+    final public const AUTHOR_EMAIL = '';
+    final public const AUTHOR_SITE = '';
+    final public const VERSION = '1.0';
 
     protected ContainerInterface $container;
 

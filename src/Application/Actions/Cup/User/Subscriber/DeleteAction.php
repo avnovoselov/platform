@@ -15,7 +15,7 @@ class DeleteAction extends UserAction
             if ($userSubscriber) {
                 try {
                     $this->userSubscriberService->delete($userSubscriber);
-                } catch (UserNotFoundException $e) {
+                } catch (UserNotFoundException) {
                     // ignore
                 }
             }
